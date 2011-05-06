@@ -7,12 +7,12 @@
     <body>
         <h2>Mirawatt API</h2>
         <?php
-        $json = json_decode(file_get_contents("data.json"), true);
+        $json = json_decode(file_get_contents("data-std.json"), true);
         ?>
         <table>
             <tr>
                 <th>JSON</th>
-                <th>XML</th>
+                <th>JSON-std</th>
             </tr>
             <tr valign="top">
                 <td>
@@ -28,27 +28,29 @@
          */
         $prettyFeeds = '{ "feeds":[' . PHP_EOL;
         $pa = array();
+        $L=" ";
+        $L2=$L.$L;
+        $L3=$L.$L.$L;
         foreach ($json["feeds"] as $feed) {
-            $prettyFeed = '  { "scopeId":"' . $feed["scopeId"] . '", "name":"' . $feed["name"] . '",' . PHP_EOL;
-            $prettyFeed.='    "stamp":"' . $feed["stamp"] . '", "value":"' . $feed["value"] . '",' . PHP_EOL;
-            $prettyFeed.='    "observations":[' . PHP_EOL;
+            $prettyFeed = $L.'{"scopeId":"' . $feed["scopeId"] . '", "name":"' . $feed["name"] . '",' . PHP_EOL;
+            $prettyFeed.=$L2.'"t":"' . $feed["stamp"] . '", "v":' . $feed["value"] . ',' . PHP_EOL;
+            $prettyFeed.=$L2.'"observations":[' . PHP_EOL;
             $oa = array();
             foreach ($feed["observations"] as $o) {
-                $po = '      {"t":"' . $o["t"] . '","v":' . $o["v"] . '}';
+                $po = $L3.'{"t":"' . $o["t"] . '","v":' . $o["v"] . '}';
                 array_push($oa, $po);
             }
             $prettyFeed.=implode(",".PHP_EOL, $oa);
-            $prettyFeed.=PHP_EOL . '    ]' . PHP_EOL;
-            $prettyFeed.='  }';
+            $prettyFeed.=PHP_EOL . $L2.']}';
             array_push($pa, $prettyFeed);
         }
-        $prettyFeeds.=implode(",".PHP_EOL, $pa);;
+        $prettyFeeds.=implode(",", $pa);;
         $prettyFeeds.=PHP_EOL .']}' . PHP_EOL;
         echo $prettyFeeds;
         ?></pre>
                 </td>
                 <td>
-                    <pre><?php echo file_get_contents("data.json") ?></pre>
+                    <pre><?php echo (file_get_contents("data-std.json")) ?></pre>
                 </td>
             </tr>
         </table>
