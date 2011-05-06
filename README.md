@@ -28,6 +28,11 @@ All date and time values will be express in ISO-8601 formats (including timezone
 ## XML 
 There was a pre-existing XML format, which has been deprecated.
 
+## Authentication, Authorization and Ecryption.
+
+*   Token based service authentication
+*   Encryption should be implements as ssl/tls, not our implementation
+
 # Semantics
 ## Multiple Channels
 Produire un fragment JSON. valeurs multiples en [1,2,3,4,5,6,7,8]
