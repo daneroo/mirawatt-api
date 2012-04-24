@@ -56,7 +56,7 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savings considerations. This is one reason for which the timestamps are presented at each sample.
 
 ## Discussion of format choices
-As seen in the examples below, some choices are implicit: the first is that a set of sensor's data is always meant to be handled as a single time-coincident set of values. This choice was made to greatly simplify the temporal `lining-up` of the samples. which is best handled at a simgle point, preferably closest to where the samples are taken.
+As seen in the examples below, some choices are implicit: the first is that a set of sensor's data is always meant to be handled as a single time-coincident set of values. This choice was made to greatly simplify the temporal __lining-up__ of the samples. which is best handled at a single point, preferably closest to where the samples are taken.
 
 There is an assumption that all clocks are accurate.
 
@@ -164,6 +164,7 @@ It is important to note, that the hub is therefore responsible for both aggreega
 
 ### Service Endpoints
 The endpoint may allow x-posting by implementing __INFO__ method.
+
 * __POST__: the url endpoint is `http://`_mirawatt-server_`/incoming`, currently `http://mirawatt.cloudfoundry.com/incoming`.
 * __JSON-RPC__: the url endpoint is `http://`_mirawatt-server_`/jsonrpc`, currently `http://mirawatt.cloudfoundry.com/jsonrpc`.
 
