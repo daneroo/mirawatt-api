@@ -39,7 +39,7 @@ This format may _optionally_ contain a fractional second component i.e. `"2012-0
 ### Measurement values
 All measured values are to be represented as JSON Numbers. The implied units will be watts (__W__), (or watt-hours (__Wh__),  where appropriate) unless otherwise specified. Where no data is available a _null_ value may be used.
 
-This is a floating point representaion. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
+This is a floating point representation. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
 
 Where multiple sensor data is aggregated into a single account, both the the `sensorId`, and the `obs.v` attributes are represented as arrays. `v:123` becomes `v:[123,456]`, and `sensorId:"s1"` becomes `sensorId:["s2","s3"]`.
 
@@ -54,7 +54,7 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 * __"Year", scopeId:4__: Samples every `month`
 
 ### Higher Level Scopes
-For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savings considerations. This is one reason for which the timestamps are presented at each sample.
+For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to daylight savings considerations. This is one reason for which the timestamps are presented at each sample.
 
 ### Discussion of format choices
 As seen in the examples below, some choices are implicit: the first is that a set of sensor's data is always meant to be handled as a single time-coincident set of values. This choice was made to greatly simplify the temporal __lining-up__ of the samples. which is best handled at a single point, preferably closest to where the samples are taken.
