@@ -182,5 +182,4 @@ This topic has not yet been addressed fully.
 *   Token based service authentication
 *   Encryption should be implements as ssl/tls, not our implementation
 
-# Semantics
 
