@@ -13,9 +13,10 @@ The intended application is to gather measurement at the approximate grain of a 
 There may be different usage scenarios which evolve over time, such as historical archival or analysis, which have been taken into account in the design of the platform.
 
 ## Terms
-*   __sensor__: a device which gather point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurment of individual cirucuit level energy consumption.
-*   __account__: sensors may be grouped at a first level into __accounts__ to present an aggreggated view of consumption. This would typically be a _home_.
-*   __scope__: measurments often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
+* __sensor__: a device which gather point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurment of individual cirucuit level energy consumption.
+* __account__: sensors may be grouped at a first level into __accounts__ to present an aggreggated view of consumption. This would typically be a _home_.
+* __scope__: measurments often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
+* __hub (or uct)__: the communcations component which aggregates the sensor data at the first level for communications with the platform or other clients.
 
 # Format
 Systems such as Mirawatt, benefit greatly from standards adoption, and reusable components.
@@ -49,8 +50,17 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 * __"Year", scopeId:4__: Samples every `month`
 
 ## Higher Level Scopes
-For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savins considerations.
-  
+For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savings considerations. This is one reason for which the timestamps are presented at each sample.
+
+## Discussion of format choices
+As seen in the examples below, some choices are implicit: the first is that a set of sensor's data is always meant to be handled as a single time-coincident set of values. This choice was made to greatly simplify the temporal `lining-up` of the samples. which is best handled at a simgle point, preferably closest to where the samples are taken.
+
+There is an assumption that all clocks are accurate.
+
+The format is self-consistent and independant of other transport/storage considerations, such as url-endpoint parameters, although those may be used for other considerations such as authentication, or caching policies.
+
+The representation of the timestamp format, although may seem to be redundant,actually has lower entropy and gives better performance in http transport when propoerly using `Content-Encoding: gzip` or `deflate` headers and encoding.
+Given  also the considerations above for day/month boundaries, this seems like the simplest choice.
 
 ## Full examples:
 
@@ -133,21 +143,28 @@ For the the __Month__ and __Year__ scopes, where samples are respectively at the
 ## XML 
 There was a pre-existing XML format, which has been deprecated.
 
-# Transport
+# RPC Transport
+There are three flavors of our api, with respect to service invocation:
 
-## URL service endpoints
-We will use mostly REST based services
-`http://api.mirawatt.com/svc/`__entity__/`params-such-as-id`,  
-and where __entity__ is one of
+* __Straight POST/GET__: simplest form
+* __JSON-RPC__: Has better error handling semantics.
+* __Dnode__: based on socket-io, for bi-directional communications, with transport fallback from web-sockets, to flash-sockets, html streaming-response to xhr-polling, and finally jsonp-polling
+* __REST__: REST based semantics are still being investigated, but their main advantage will be for the archival/retreival stage.
 
-*   __time__: Produce a timestamp for device clock setup
-*   __state__: GET and POST methods
-*   __account__
-*   __history__:
-*   __sync__
-*   __token__:
+## Methods
 
+* __set/get__: These are the only two actions defined for the initial operational deployment, their intended bodies are exactly described by the format above. The role of the endpoint is essentially to reflect the last given value for a given `accountId/scopeId`.
+
+### Service Endpoints
 The endpoint may allow x-posting by implementing __INFO__ method.
+* __POST__: the url endpoint is `http://_mirawatt-server_/incoming`, 
+
+### Later phases
+* __update__: This action is meant to transfer partial, or updated information, the precise semantics of the implied aggregation are under developpment. In this scenario
+
+* __on-demand__: this is a scenario in which a properly instrumented hub, will push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This
+
+
 
 ## Authentication, Authorization and Ecryption.
 This topic has not yet been addressed fully.
@@ -157,8 +174,3 @@ This topic has not yet been addressed fully.
 
 # Semantics
 
-## Multiple Channels
-Produire un fragment JSON. valeurs multiples en [1,2,3,4,5,6,7,8]
-
-
-TODO; encryption
