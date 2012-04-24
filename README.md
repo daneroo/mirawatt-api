@@ -62,7 +62,7 @@ There is an assumption that all clocks are accurate.
 
 The format is self-consistent and independant of other transport/storage considerations, such as url-endpoint parameters, although those may be used for other considerations such as authentication, or caching policies.
 
-The representation of the timestamp format, although may seem to be redundant,actually has lower entropy and gives better performance in http transport when propoerly using `Content-Encoding: gzip` or `deflate` headers and encoding.
+The representation of the timestamp format, although may seem to be redundant, actually has lower entropy and gives better performance in http transport when properly using `Content-Encoding: gzip` or `deflate` headers and encoding.
 Given  also the considerations above for day/month boundaries, this seems like the simplest choice.
 
 ## Full examples:
