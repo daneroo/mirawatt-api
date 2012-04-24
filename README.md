@@ -1,8 +1,8 @@
 # Mirawatt API
 
-This project descibes mirawatt's data interchange formats, and API.
+This project describes mirawatt's data interchange formats, and API.
 
-The pupose of this repository is to evolve this standard in a collborative manner.
+The purpose of this repository is to evolve this standard in a collaborative manner.
 
 Mirawatt's purpose is to gather, transport, and present energy consumtion and usgae information.
 The primary application is to gather electrical consumption from in-home sensors,
