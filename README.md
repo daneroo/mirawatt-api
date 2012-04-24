@@ -170,9 +170,9 @@ The endpoint may allow x-posting by implementing __INFO__ method.
 * __JSON-RPC__: the url endpoint is `http://`_mirawatt-server_`/jsonrpc`, currently `http://mirawatt.cloudfoundry.com/jsonrpc`.
 
 ### Later phases
-* __update__: This action is meant to transfer partial, or updated information, the precise semantics of the implied aggregation are under developpment. In this scenario
+* __update__: This action is meant to transfer partial, or updated information, the precise semantics of the implied aggregation are under developpment. 
 
-* __on-demand__: in this phase, a properly instrumented hub, will push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This measure
+* __on-demand__: in this phase, an enhanced hub, would push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This measure
 
 * __archival/retreival__: This phase would fully implement long-term persistence on the platform. Initial implementation of the storage backend is under experiment. The implementation uses entropy coding of the stored data in an effective manner for subsequent retreival, transport and processing using an incremental map-reduce. based on CouchDB.
 
