@@ -8,7 +8,7 @@ Mirawatt's purpose is to gather, transport, and present energy consumtion and us
 The primary application is to gather electrical consumption from in-home sensors,
 and to present the gathered data, to consummers through the web, typically on a mobile platform.
 
-The intended application is to gather measurement at the approximate grain of a second, and typical aggregated views of the consumption data at the _minute_, _hour_, _day_, and _month_ levels.
+The intended application is to gather measurements at the approximate grain of a second, and typical aggregated views of the consumption data at the _minute_, _hour_, _day_, and _month_ levels.
 
 There may be different usage scenarios which evolve over time, such as historical archival or analysis, which have been taken into account in the design of the platform.
 
@@ -16,7 +16,7 @@ There may be different usage scenarios which evolve over time, such as historica
 * __sensor__: a device which gather point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurment of individual cirucuit level energy consumption.
 * __account__: sensors may be grouped at a first level into __accounts__ to present an aggreggated view of consumption. This would typically be a _home_.
 * __scope__: measurments often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
-* __hub (or uct)__: the communcations component which aggregates the sensor data at the first level for communications with the platform or other clients.
+* __hub (or UCT)__: the communcations component which aggregates the sensor data at the first level for communications with the platform or other clients.
 
 # Format
 Systems such as Mirawatt, benefit greatly from standards adoption, and reusable components.
@@ -40,7 +40,7 @@ All measured values are to be represented as JSON Numbers. The implied units wil
 
 This is a floating point representaion. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
 
-Where multiple sensor data is aggregated into a single account, bothe the `sensorId`, and the `obs.v` attributes are represented as arrays. `v:123` becomes `v:[123,456]`, and `sensorId:"s1"` becomes `sensorId:["s2","s3"]`.
+Where multiple sensor data is aggregated into a single account, both the the `sensorId`, and the `obs.v` attributes are represented as arrays. `v:123` becomes `v:[123,456]`, and `sensorId:"s1"` becomes `sensorId:["s2","s3"]`.
 
 Where only one sensor is implied (single sensor home), the `sensorId` may be omitted.
 
