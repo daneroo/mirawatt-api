@@ -34,7 +34,7 @@ All date and time values will be expressed as strings in ISO-8601 format (includ
 
     "2011-05-06T05:12:29Z"
     
-This format may optionally contain a fractional second component i.e. `"2012-04-23T22:32:12.3456Z"`, although this is not currently used in practice.
+This format may _optionally_ contain a fractional second component i.e. `"2012-04-23T22:32:12.3456Z"`.
 
 ### Measurement values
 All measured values are to be represented as JSON Numbers. The implied units will be watts (__W__), (or watt-hours (__Wh__),  where appropriate) unless otherwise specified. Where no data is available a _null_ value may be used.
