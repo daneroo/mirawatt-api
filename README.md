@@ -38,12 +38,26 @@ This is a floating poit representaion. In Javascript this is backed by the IEEE 
 
 Where multiple sensor data is aggregated into a single account, bothe the `sensorId`, and the `obs.v` attributes are represented as arrays. `v:123` becomes `v:[123,456]`, and `sensorId:"s1"` becomes `sensorId:["s2","s3"]`.
 
+Where only one sensor is implied (single sensor home), the `sensorId` may be omitted.
+
+## Named scopes
+
+* __"Live", scopeId:0__: Samples are typically at the 1s frequency
+* __"Hour", scopeId:1__: Samples every minute.
+* __"Day", scopeId:2__: Samples every Hour
+* __"Month", scopeId:3__: Samples every `day`
+* __"Year", scopeId:4__: Samples every `month`
+
+## Higher Level Scopes
+For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savins considerations.
+  
+
 ## Full examples:
 
 <center>__Single Scope, Single Sensor__</center>
 
     { "version":"1.0",
-      "accountId":"001DC9103971",
+      "accountId":"daniel.lauzon@mirawatt.com",
       "feeds": [ {
         "sensorId":"main-panel",
         "scopeId":0, "name":"Live",
@@ -64,7 +78,7 @@ Where multiple sensor data is aggregated into a single account, bothe the `senso
 <center>__Single Scope, Multiple Sensor__</center>
 
     { "version":"1.0",
-      "accountId":"daniel.lauzon@mirawatt.com",
+      "accountId":"001DC9103971",
       "feeds": [ {
         "sensorId":["112203081766779e","1122030817667789","11220308176677a2","1122030815667742"],
         "scopeId":0, "name":"Live",
