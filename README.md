@@ -16,27 +16,27 @@ There may be different usage scenarios which evolve over time, such as historica
 * __sensor__: a device which gathers point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurement of individual circuit level energy consumption.
 * __account__: sensors may be grouped at a first level into __accounts__ to present an aggregated view of consumption. This would typically be a _home_ or _dwelling_.
 * __scope__: measurements often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
-* __hub (or DAT)__: the component which aggregates the sensor data for communications with the mirawatt server or other clients.
+* __hub (or DAT)__: the component which aggregates the __sensor__ data for transmission with the mirawatt server or other clients.
 
 
-# Format
+## Format
 Systems such as Mirawatt, benefit greatly from standards adoption, and reusable components.
 Because of its pervasive adoption as well as its flexibility and it simplicity, the chosen format is __JSON__ (_Javascript Object Notation_).
 
-## JSON
+### JSON
 All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in all languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
 
-## Identifiers
+### Identifiers
 Identifiers such as __accountId__, and __sensorId__ are reperesented as strings, even where numerical in nature.
 
-## Dates and Times
+### Dates and Times
 All date and time values will be expressed as strings in ISO-8601 format (including UTC timezone). e.g.:
 
     "2011-05-06T05:12:29Z"
     
 This format may optionally contain a fractional second component i.e. `"2012-04-23T22:32:12.3456Z"`, although this is not currently used in practice.
 
-## Measurement values
+### Measurement values
 All measured values are to be represented as JSON Numbers. The implied units will be watts (__W__), (or watt-hours (__Wh__),  where appropriate) unless otherwise specified. Where no data is available a _null_ value may be used.
 
 This is a floating point representaion. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
@@ -45,7 +45,7 @@ Where multiple sensor data is aggregated into a single account, both the the `se
 
 Where only one sensor is implied (single sensor home), the `sensorId` may be omitted.
 
-## Named scopes
+### Named scopes
 
 * __"Live", scopeId:0__: Samples are typically at the 1s frequency, or better
 * __"Hour", scopeId:1__: Samples every minute.
@@ -53,10 +53,10 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 * __"Month", scopeId:3__: Samples every `day`
 * __"Year", scopeId:4__: Samples every `month`
 
-## Higher Level Scopes
+### Higher Level Scopes
 For the the __Month__ and __Year__ scopes, where samples are respectively at the `day`, and `month`, discretion is left to the application as to where these boundaries lie: typically related to the timezone of the sensor locale. These boundaries may also be sensitive to Daylight savings considerations. This is one reason for which the timestamps are presented at each sample.
 
-## Discussion of format choices
+### Discussion of format choices
 As seen in the examples below, some choices are implicit: the first is that a set of sensor's data is always meant to be handled as a single time-coincident set of values. This choice was made to greatly simplify the temporal __lining-up__ of the samples. which is best handled at a single point, preferably closest to where the samples are taken.
 
 There is an assumption that all clocks are accurate.
