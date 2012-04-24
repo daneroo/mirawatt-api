@@ -12,10 +12,10 @@ The intended application is to gather measurements at the approximate grain of a
 
 There may be different usage scenarios which evolve over time, such as historical archival or analysis, which have been taken into account in the design of the platform.
 
-### Terms
+### Definitions
 * __sensor__: a device which gathers point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurement of individual circuit level energy consumption.
 * __account__: sensors may be grouped at a first level into __accounts__ to present an aggregated view of consumption. This would typically be a _home_ or _dwelling_.
-* __scope__: measurements often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
+* __scope__: measurements often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_. (_hour_,_day_,_month_,_year_)
 * __hub (or DAT)__: the component which aggregates the __sensor__ data for transmission with the mirawatt server or other clients.
 
 
