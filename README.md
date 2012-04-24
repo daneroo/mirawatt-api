@@ -27,7 +27,7 @@ Because of its pervasive adoption as well as its flexibility and it simplicity, 
 All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in most languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
 
 ### Identifiers
-Identifiers such as __accountId__, and __sensorId__ are reperesented as strings, even where numerical in nature.
+Identifiers such as __accountId__, and __sensorId__ are reperesented as strings, even where they are numerical in nature.
 
 ### Dates and Times
 All date and time values will be expressed as strings in ISO-8601 format (including UTC timezone). e.g.:
