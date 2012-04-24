@@ -160,7 +160,7 @@ There are three flavors of our api, with respect to service invocation:
 
 * __set/get__: These are the only two actions defined for the initial operational deployment, their intended bodies are exactly described by the format above. The role of the endpoint is essentially to reflect the last given value for a given `accountId/scopeId`.
 
-It is important to note, that the hub is therefore responsible for both aggreegation of data for the different __scopes__, and any long term storage requirements.
+It is important to note, that the hub is therefore responsible for both aggregation of data for the different __scopes__, and any long term storage/archival requirements.
 
 ### Service Endpoints
 The endpoint may allow x-posting by implementing __INFO__ method.
@@ -173,7 +173,7 @@ The endpoint may allow x-posting by implementing __INFO__ method.
 
 * __on-demand__: in this phase, a properly instrumented hub, will push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This measure
 
-* __archival__: This phase would fully implement long-term persistence on the platform. Initial implementation of the storage backend is under experiment. The implementation uses efficient entropy coding of the stored data in an effective manner for subsequent retreival, and processing using an incremental map-reduce. based on CouchDB.
+* __archival/retreival__: This phase would fully implement long-term persistence on the platform. Initial implementation of the storage backend is under experiment. The implementation uses entropy coding of the stored data in an effective manner for subsequent retreival, transport and processing using an incremental map-reduce. based on CouchDB.
 
 ## Authentication, Authorization and Ecryption.
 This topic has not yet been addressed fully.
