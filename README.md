@@ -26,16 +26,19 @@ Because of its pervasive adotoption as well as its flexibility and it simplicity
 All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in all languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
 
 ## Identifiers
-Identifiers as __accountId__, and __sensorId__ are repersented as strings, even where numerical in nature.
+Identifiers such as __accountId__, and __sensorId__ are repersented as strings, even where numerical in nature.
 
 ## Dates and Times
 All date and time values will be expressed as strings in ISO-8601 format (including UTC timezone). e.g.:
 
     "2011-05-06T05:12:29Z"
+    
+This format may optionally contain a fractional second component i.e. `"2012-04-23T22:32:12.3456Z"`, although this is not currently used in practice.
+
 ## Measurement values
 All measured values are to be represented as JSON Numbers. The implied units will be watts (__W__), (or watt-hours (__Wh__),  where appropriate) unless otherwise specified. Where no data is available a _null_ value may be used.
 
-This is a floating poit representaion. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
+This is a floating point representaion. In Javascript this is backed by the IEEE 754 Standard (with a 52-bit mantissa and an 11-bit exponent). In practice it may be appropriate to quantize these values (to integers for example, for considerations of transport size or run-legth compression for archival).
 
 Where multiple sensor data is aggregated into a single account, bothe the `sensorId`, and the `obs.v` attributes are represented as arrays. `v:123` becomes `v:[123,456]`, and `sensorId:"s1"` becomes `sensorId:["s2","s3"]`.
 
@@ -43,7 +46,7 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 
 ## Named scopes
 
-* __"Live", scopeId:0__: Samples are typically at the 1s frequency
+* __"Live", scopeId:0__: Samples are typically at the 1s frequency, or better
 * __"Hour", scopeId:1__: Samples every minute.
 * __"Day", scopeId:2__: Samples every Hour
 * __"Month", scopeId:3__: Samples every `day`
@@ -147,24 +150,29 @@ There was a pre-existing XML format, which has been deprecated.
 There are three flavors of our api, with respect to service invocation:
 
 * __Straight POST/GET__: simplest form
-* __JSON-RPC__: Has better error handling semantics.
+* __JSON-RPC__: we use the version 2 spec. Has better error handling semantics (application level). [json-rpc spec](http://json-rpc.org/wiki/specification)
 * __Dnode__: based on socket-io, for bi-directional communications, with transport fallback from web-sockets, to flash-sockets, html streaming-response to xhr-polling, and finally jsonp-polling
 * __REST__: REST based semantics are still being investigated, but their main advantage will be for the archival/retreival stage.
 
-## Methods
+## Implementation phases
+
+### Initial Phase
 
 * __set/get__: These are the only two actions defined for the initial operational deployment, their intended bodies are exactly described by the format above. The role of the endpoint is essentially to reflect the last given value for a given `accountId/scopeId`.
 
+It is important to note, that the hub is therefore responsible for both aggreegation of data for the different __scopes__, and any long term storage requirements.
+
 ### Service Endpoints
 The endpoint may allow x-posting by implementing __INFO__ method.
-* __POST__: the url endpoint is `http://_mirawatt-server_/incoming`, 
+* __POST__: the url endpoint is `http://`_mirawatt-server_`/incoming`, currently `http://mirawatt.cloudfoundry.com/incoming`.
+* __JSON-RPC__: the url endpoint is `http://`_mirawatt-server_`/jsonrpc`, currently `http://mirawatt.cloudfoundry.com/jsonrpc`.
 
 ### Later phases
 * __update__: This action is meant to transfer partial, or updated information, the precise semantics of the implied aggregation are under developpment. In this scenario
 
-* __on-demand__: this is a scenario in which a properly instrumented hub, will push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This
+* __on-demand__: in this phase, a properly instrumented hub, will push data only when requested, this requires bi-directional communication, to implement a pub-sub behaviour, where essentially the __hub__ is the subscriber to presence events of eventual consumer clients. That is, the __hub__ only pushes data when requested, for example when a client is viewing live data. This measure
 
-
+* __archival__: This phase would fully implement long-term persistence on the platform. Initial implementation of the storage backend is under experiment. The implementation uses efficient entropy coding of the stored data in an effective manner for subsequent retreival, and processing using an incremental map-reduce. based on CouchDB.
 
 ## Authentication, Authorization and Ecryption.
 This topic has not yet been addressed fully.
