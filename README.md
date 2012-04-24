@@ -24,7 +24,7 @@ Systems such as Mirawatt, benefit greatly from standards adoption, and reusable 
 Because of its pervasive adoption as well as its flexibility and it simplicity, the chosen format is __JSON__ (_Javascript Object Notation_).
 
 ### JSON
-All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in all languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
+All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in most languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
 
 ### Identifiers
 Identifiers such as __accountId__, and __sensorId__ are reperesented as strings, even where numerical in nature.
