@@ -4,7 +4,7 @@ This project describes mirawatt's data interchange formats, and API.
 
 The purpose of this repository is to evolve this standard in a collaborative manner.
 
-Mirawatt's purpose is to gather, transport, and present energy consumtion and usgae information.
+Mirawatt's purpose is to gather, transport, and present energy consumption and usage information.
 The primary application is to gather electrical consumption from in-home sensors,
 and to present the gathered data, to consummers through the web, typically on a mobile platform.
 
