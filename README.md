@@ -13,20 +13,21 @@ The intended application is to gather measurements at the approximate grain of a
 There may be different usage scenarios which evolve over time, such as historical archival or analysis, which have been taken into account in the design of the platform.
 
 ## Terms
-* __sensor__: a device which gather point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurment of individual cirucuit level energy consumption.
-* __account__: sensors may be grouped at a first level into __accounts__ to present an aggreggated view of consumption. This would typically be a _home_.
-* __scope__: measurments often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
-* __hub (or UCT)__: the communcations component which aggregates the sensor data at the first level for communications with the platform or other clients.
+* __sensor__: a device which gathers point-in-time cunsumption measurements. This could be the measurement of whole-house energy consumption, or measurement of individual circuit level energy consumption.
+* __account__: sensors may be grouped at a first level into __accounts__ to present an aggregated view of consumption. This would typically be a _home_ or _dwelling_.
+* __scope__: measurements often need to be presented and or aggregated at different time scales; we refer to those time scales as _scopes_.
+* __hub (or DAT)__: the component which aggregates the sensor data for communications with the mirawatt server or other clients.
+
 
 # Format
 Systems such as Mirawatt, benefit greatly from standards adoption, and reusable components.
-Because of its pervasive adotoption as well as its flexibility and it simplicity, the chosen format is __JSON__ (_Javascript Object Notation_).
+Because of its pervasive adoption as well as its flexibility and it simplicity, the chosen format is __JSON__ (_Javascript Object Notation_).
 
 ## JSON
 All data will be transported as [JSON](http://www.json.org/). This widely adopted format is well documented, and being a proper subset of the Javascript language, is natively supported in all browsers, and is a well supported format in all languages ([Javascript,Python,Perl,Java,C,Objective-C,C++,C#, and almost any language you can think of](http://www.json.org/)).
 
 ## Identifiers
-Identifiers such as __accountId__, and __sensorId__ are repersented as strings, even where numerical in nature.
+Identifiers such as __accountId__, and __sensorId__ are reperesented as strings, even where numerical in nature.
 
 ## Dates and Times
 All date and time values will be expressed as strings in ISO-8601 format (including UTC timezone). e.g.:
