@@ -47,9 +47,9 @@ Where only one sensor is implied (single sensor home), the `sensorId` may be omi
 
 ### Named scopes
 
-* __"Live", scopeId:0__: Samples are typically at the 1s frequency, or better
-* __"Hour", scopeId:1__: Samples every minute.
-* __"Day", scopeId:2__: Samples every Hour
+* __"Live", scopeId:0__: Samples are typically at the 1 `second` frequency, or better
+* __"Hour", scopeId:1__: Samples every `minute`.
+* __"Day", scopeId:2__: Samples every `hour`
 * __"Month", scopeId:3__: Samples every `day`
 * __"Year", scopeId:4__: Samples every `month`
 
