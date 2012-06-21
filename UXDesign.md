@@ -26,11 +26,32 @@ whereas for the **end consumer**, we might favor:
 ## Elements of visual design
 
 * Color
+  * Distinguishing between sensors
+  * Highlight consumption (peaks)
 * Visualization (Graphs)
+    * Continuous line graphs
+    * Vertical bar charts
+    * Pie charts
+    * Relative (Comparisons)
+        * Correlation: with temperature
+        * Time: Year-over-Year, Day of the week
+        * Other Consumers: by friendship-graph (for gamification), or by categorization (metrics on dwelling size, consumption profile, geography)
 * Units
-* Scale
+    * Scope independance
+    * Scope specific
+    * Monetary
+* Scale: 
+    * when dynamic range is problematic...because the elasticity may not be related to magnitude.
+    * Use of projection for incomplete periods.
 
 ## Elements of interactive design
 
 * Data navigation
+    * Selection of scope in time
+    * Selection of sensor
+    * Selection of account(s)
+
 * Settings and preferences
+    * Colors
+    * Scales/Units
+    * Pricing
