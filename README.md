@@ -2,6 +2,8 @@
 
 This project describes mirawatt's data interchange formats, and API.
 
+For a disussion on [User Experience](UXDesign.md) (GUI) see [this document]((UXDesign.md)
+
 The purpose of this repository is to evolve this standard in a collaborative manner.
 
 Mirawatt's purpose is to gather, transport, and present energy consumption and usage information.
