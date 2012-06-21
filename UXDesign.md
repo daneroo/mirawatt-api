@@ -17,11 +17,15 @@ Those which may be **interested in the platform and devices** themselves, in whi
 
 whereas for the **end consumer**, we might favor:
 
-* Behavioral Objectives
-* Cognitive Objectives
+* **Behavioral Objectives**: Measuring the effectiveness of the platform to reduce energy use.
+* **Cognitive Objectives**: These would measure the accuracy and extent of the knowledge that an end user has acquired.
 
 
 ## Process
+
+In the developpment of the user experience, we should, inasmuch as possible, define measurable goals.
+
+For the end consumer objectives, behavioral and cognitive, we should measure a baseline, to see how the use of the platform performs.
 
 ## Elements of visual design
 
