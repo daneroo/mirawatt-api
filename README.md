@@ -2,7 +2,7 @@
 
 This project describes mirawatt's data interchange formats, and API.
 
-For a disussion on [User Experience](UXDesign.md) (GUI) see [this document]((UXDesign.md)
+For a disussion on [User Experience](/daneroo/mirawatt-api/blob/master/UXDesign.md) (UX/GUI) see [this document]((/daneroo/mirawatt-api/blob/master/UXDesign.md)
 
 The purpose of this repository is to evolve this standard in a collaborative manner.
 
